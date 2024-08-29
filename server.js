@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
+const resourceRoutes = require('./routes/resourceRoutes');
 
 dotenv.config();
 
@@ -15,6 +16,8 @@ app.get('/', (req, res)=> {
     res.send('API is running...'); 
 
 });  //basic route
+
+app.use('/api', resourceRoutes); 
 
 mongoose.connect(process.env.MONGO_URI,{
     useNewUrlParser: true,
