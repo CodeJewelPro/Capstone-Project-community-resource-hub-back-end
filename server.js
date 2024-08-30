@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const resourceRoutes = require('./routes/resourceRoutes');
+const userRoutes = require('./routes/userRoutes');
+const categoryRoutes = require('./routes/categoryRoutes');
 
 dotenv.config();
 
@@ -18,6 +20,8 @@ app.get('/', (req, res)=> {
 });  //basic route
 
 app.use('/api', resourceRoutes); 
+app.use('/api',userRoutes);
+app.use('/api', categoryRoutes);
 
 mongoose.connect(process.env.MONGO_URI,{
     useNewUrlParser: true,
