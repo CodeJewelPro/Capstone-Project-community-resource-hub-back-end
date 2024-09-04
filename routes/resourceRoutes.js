@@ -29,6 +29,17 @@ router.post('/resources', async (req, res) => {
     }
 });
 
+// GET - Fetch a single resource by its ID
+router.get('/resources/:id', async (req, res) => {
+    try {
+        const resource = await Resource.findById(req.params.id);
+        if (!resource) return res.status(404).json({ message: 'Resource not found' });
+        res.json(resource);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
 // PUT - Update an existing resource by its ID
 router.put('/resources/:id', async (req, res) => {
     try {
